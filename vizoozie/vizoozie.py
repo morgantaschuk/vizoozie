@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import getopt, sys, re
+import getopt, sys, re, os
 from xml.dom.minidom import parseString
 
 VERSION='0.1'
@@ -9,7 +9,8 @@ class VizOozie(object):
     properties = {}
     
     def loadProperties(self):
-        with open("vizoozie/vizoozie.properties") as f:
+	scriptdir = os.path.dirname(__file__) + "/vizoozie.properties"
+	with open(scriptdir) as f:
             for line in f:
                 key, val = line.split('=')
                 self.properties[key] = val
